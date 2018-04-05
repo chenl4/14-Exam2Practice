@@ -41,7 +41,7 @@ def main():
 
     run_test_init()
     run_test_append_string()
-#     run_test_double()
+    run_test_double()
 #     run_test_shrink()
 #     run_test_double_then_shrink()
 #     run_test_reset()
@@ -167,11 +167,11 @@ class Box(object):
             self.contents = self.contents + additional_contents
             return ''
         else:
-            space_remained = len(additional_contents) + len(self.contents) - self.volume
+            space_exceed = len(additional_contents) + len(self.contents) - self.volume
             remained_additional_contents = ''
-            for k in range(space_remained - 1):
+            for k in range(space_exceed - 1):
                 self.contents = self.contents + additional_contents[k]
-            for k in range(len(additional_contents) - space_remained, len(additional_contents), 1):
+            for k in range(len(additional_contents) - space_exceed, len(additional_contents), 1):
                 remained_additional_contents = remained_additional_contents + additional_contents[k]
             return remained_additional_contents
 
@@ -221,6 +221,9 @@ class Box(object):
         # FOR FULL CREDIT, YOUR SOLUTION MUST BE NO MORE THAN
         #    ** TWO **   LINES OF CODE.
         ################################################################
+
+        x = self.append_string(self.contents)
+        return x
 
     def shrink(self, new_volume):
         """
