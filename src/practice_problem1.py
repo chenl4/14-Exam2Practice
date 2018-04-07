@@ -167,12 +167,15 @@ class Box(object):
             self.contents = self.contents + additional_contents
             return ''
         else:
-            space_exceed = len(additional_contents) + len(self.contents) - self.volume
+            space_exceed = len(additional_contents) + len(self.contents) - \
+                           self.volume
             remained_additional_contents = ''
             for k in range(space_exceed - 1):
                 self.contents = self.contents + additional_contents[k]
-            for k in range(len(additional_contents) - space_exceed, len(additional_contents), 1):
-                remained_additional_contents = remained_additional_contents + additional_contents[k]
+            for k in range(len(additional_contents) - space_exceed,
+                           len(additional_contents), 1):
+                remained_additional_contents = remained_additional_contents + \
+                                               additional_contents[k]
             return remained_additional_contents
 
     def double(self):
@@ -209,7 +212,7 @@ class Box(object):
           #                       contents that did NOT fit]
         """
         # --------------------------------------------------------------
-        # TODO: 4. Implement and test this function.
+        # DONE: 4. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
