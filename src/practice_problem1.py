@@ -43,7 +43,7 @@ def main():
     run_test_append_string()
     run_test_double()
     run_test_shrink()
-#     run_test_double_then_shrink()
+#    run_test_double_then_shrink()
 #     run_test_reset()
 #     run_test_steal()
 #     run_test_get_history()
@@ -275,14 +275,20 @@ class Box(object):
         # and THEN translate the pseudo-code to a solution.
         # --------------------------------------------------------------
 
+        stuff_to_return = ''
+        stuff_to_add = ''
+
         if len(self.contents) <= new_volume:
             self.volume = new_volume
             return ''
         if len(self.contents) > new_volume:
-            for k in range(len(self.contents) - new_volume, len(self.contents)):
-                self.contents = '' + self.contents[k]
+            for j in range(new_volume, len(self.contents)):
+                stuff_to_return = stuff_to_return + self.contents[j]
+            for k in range(new_volume):
+                stuff_to_add = stuff_to_add + self.contents[k]
             self.volume = new_volume
-            return self.contents
+            self.contents = stuff_to_add
+            return stuff_to_return
 
     def double_then_shrink(self, new_volume):
         """
@@ -336,6 +342,9 @@ class Box(object):
         #    DIFFICULTY:      5
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+
+        x = self.double()
+        x.shrink(new_volume)
 
     def reset(self):
         """
