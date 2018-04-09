@@ -42,7 +42,7 @@ def main():
     run_test_init()
     run_test_append_string()
     run_test_double()
-#     run_test_shrink()
+    run_test_shrink()
 #     run_test_double_then_shrink()
 #     run_test_reset()
 #     run_test_steal()
@@ -163,20 +163,19 @@ class Box(object):
         #    and continue working on the problem.
         # --------------------------------------------------------------
 
-        if len(additional_contents) <= (self.volume - len(self.contents)):
-            self.contents = self.contents + additional_contents
-            return ''
-        else:
-            space_exceed = len(additional_contents) + len(self.contents) - \
-                           self.volume
-            remained_additional_contents = ''
-            for k in range(space_exceed - 1):
-                self.contents = self.contents + additional_contents[k]
-            for k in range(len(additional_contents) - space_exceed,
-                           len(additional_contents), 1):
-                remained_additional_contents = remained_additional_contents + \
-                                               additional_contents[k]
-            return remained_additional_contents
+        space = self.volume - len(self.contents)
+        number_of_characters_to_append = min(space, len(additional_contents))
+
+        stuff_to_add = ''
+        for k in range(number_of_characters_to_append):
+            stuff_to_add = stuff_to_add + additional_contents[k]
+        self.contents = self.contents + stuff_to_add
+
+        stuff_to_return = ''
+        for k in range(number_of_characters_to_append, len(additional_contents)):
+            stuff_to_return = stuff_to_return + additional_contents[k]
+
+        return stuff_to_return
 
     def double(self):
         """
@@ -264,7 +263,7 @@ class Box(object):
           :type new_volume: int
         """
         # --------------------------------------------------------------
-        # TODO: 5. Implement and test this function.
+        # DONE: 5. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -275,6 +274,15 @@ class Box(object):
         # IMPORTANT: Write a solution to this problem in pseudo-code,
         # and THEN translate the pseudo-code to a solution.
         # --------------------------------------------------------------
+
+        if len(self.contents) <= new_volume:
+            self.volume = new_volume
+            return ''
+        if len(self.contents) > new_volume:
+            for k in range(len(self.contents) - new_volume, len(self.contents)):
+                self.contents = '' + self.contents[k]
+            self.volume = new_volume
+            return self.contents
 
     def double_then_shrink(self, new_volume):
         """
