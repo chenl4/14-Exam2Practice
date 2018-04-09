@@ -65,19 +65,19 @@ def run_test_practice_problem2a():
     # Test 2
     actual_sequence = practice_problem2a([3, 543, 54, 12], 7)
     expected_sequence = [10, 550, 61, 19]
-    print('Test 1: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
+    print('Test 2: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
     print()
 
     # Test 3
     actual_sequence = practice_problem2a([5, 234, 53, 213, 43], -12)
     expected_sequence = [-7, 222, 41, 201, 31]
-    print('Test 1: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
+    print('Test 3: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
     print()
 
     # Test 4
     actual_sequence = practice_problem2a([2, 10, 5], 6)
     expected_sequence = [8, 16, 11]
-    print('Test 1: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
+    print('Test 4: ', 'Expected: ', expected_sequence, 'Actual: ', actual_sequence)
     print()
 
 
@@ -199,13 +199,22 @@ def practice_problem2b(sequence):
       :type sequence [str]
     """
     ####################################################################
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   10 minutes.
     ####################################################################
+
+    sequence_first_letter = ''
+
+    for k in range(len(sequence)):
+        string_in_sequence = sequence[k]
+        if len(string_in_sequence) >= 1:
+            sequence_first_letter = sequence_first_letter + string_in_sequence[0]
+
+    return sequence_first_letter
 
 
 # ----------------------------------------------------------------------
